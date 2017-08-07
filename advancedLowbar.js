@@ -10,6 +10,19 @@ function once(func) {
   };
 }
 
+function memoize(fn, hash) {
+  const cache = {};
+  const memo = function (key) {
+    if (!(key in cache)) {
+      cache[key] = fn.apply(null, arguments);
+    }
+    return cache[key];
+  };
+  memo.cache = cache;
+  return memo;
+}
+
 module.exports = {
   once,
+  memoize,
 };
