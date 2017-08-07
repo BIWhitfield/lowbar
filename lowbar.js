@@ -35,6 +35,7 @@ _.each = (array, func) => {
   return array;
 };
 
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
