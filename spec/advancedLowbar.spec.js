@@ -8,6 +8,7 @@ const {
   sortBy,
   zip,
   sortedIndex,
+  flatten,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -164,16 +165,41 @@ describe('sortedIndex', () => {
   it('is a function', () => {
     expect(sortedIndex).to.be.a('function');
   });
-
   it('returns the index at which the value should be inserted in the list to maintain order', () => {
     const actual = sortedIndex([1, 2, 3, 5, 6], 4);
     const expected = 3;
     expect(actual).to.equal(expected);
   });
-
   it('handles invalid inputs', () => {
     expect(sortedIndex()).to.equal(0);
     expect(sortedIndex(null)).to.equal(0);
     expect(sortedIndex(false)).to.equal(0);
+  });
+});
+
+
+describe('flatten', () => {
+  it('is a function', () => {
+    expect(flatten).to.be.a('function');
+  });
+
+  it('handles invalid inputs', () => {
+    expect(flatten()).to.eql([]);
+    expect(flatten(null)).to.eql([]);
+    expect(flatten({ 1: 1 })).to.eql([]);
+  });
+
+  it('flattens a one depth nested array', () => {
+    expect(flatten([1, [2]])).to.eql([1, 2]);
+  });
+
+  it('flattens nested arrays', () => {
+    expect(flatten([1, [[[2]]]])).to.eql([1, 2]);
+    expect(flatten([1, [[[[2, [[[[[3]]]]]]]]]])).to.eql([1, 2, 3]);
+  });
+
+  it('accepts a shallow parameter flatten just one level', () => {
+    expect(flatten([1, [[[[2]]]]], true)).to.eql([1, [[[2]]]]);
+    expect(flatten([1, [[[[2]]]]], undefined)).to.eql([1, 2]);
   });
 });
