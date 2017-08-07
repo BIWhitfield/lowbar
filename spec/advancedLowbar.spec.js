@@ -71,3 +71,4 @@ describe('memoize', () => {
     expect(memDble.cache).to.eql({ 2: 4 });
   });
 });
+

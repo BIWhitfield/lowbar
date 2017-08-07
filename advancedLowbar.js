@@ -10,6 +10,7 @@ function once(func) {
   };
 }
 
+
 function memoize(fn, hash) {
   const cache = {};
   const memo = function (key) {
