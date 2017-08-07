@@ -131,4 +131,28 @@ describe('_', () => {
       expect(actual).to.equal(expected);
     });
   });
+
+  describe('#filter', () => {
+    it('is a function', () => {
+      expect(_.filter).to.be.a('function');
+    });
+    it('should return even numbers when passed an array of numbers', () => {
+      const numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+      function isEven(num) {
+        return !(num % 2);
+      }
+      expect(_.filter(numberList, isEven)).to.eql([2, 4, 6, 8, 10]);
+    });
+    it('should return words longer than 5 letters long', () => {
+      const sentence = ['What', 'even', 'is', 'life', 'maaaate?'];
+      function wordOverFiveLetters(word) {
+        return word.length > 5;
+      }
+      expect(_.filter(sentence, wordOverFiveLetters)).to.eql(['maaaate?']);
+    });
+    it('should return [] if passed an empty array', () => {
+      const emptyArray = [];
+      expect(_.filter(emptyArray)).to.eql([]);
+    });
+  });
 });
