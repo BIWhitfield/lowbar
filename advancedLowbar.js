@@ -89,6 +89,20 @@ function sortedIndex(list, value, iteratee) {
   }
 }
 
+
+function flatten(arr, shallow) {
+  if (!Array.isArray(arr)) return [];
+
+  return _.reduce(arr, (res, elem) => {
+    if (Array.isArray(elem) && !shallow) {
+      elem = _.flatten(elem);
+    }
+
+    return res.concat(elem);
+  }, []);
+}
+
+
 module.exports = {
   once,
   memoize,
@@ -97,4 +111,5 @@ module.exports = {
   sortBy,
   zip,
   sortedIndex,
+  flatten,
 };
