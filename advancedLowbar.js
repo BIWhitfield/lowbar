@@ -103,6 +103,26 @@ function flatten(arr, shallow) {
 }
 
 
+function intersection(...args) {
+  const result = [];
+  _.each(args[0], (arrayElem) => {
+    let isShared = false;
+    for (let i = 1; i < args.length; i++) {
+      _.each(args[i], (check) => {
+        if (arrayElem === check) {
+          isShared = true;
+        }
+      });
+    }
+
+    if (isShared) {
+      result.push(arrayElem);
+    }
+  });
+
+  return result;
+}
+
 module.exports = {
   once,
   memoize,
@@ -112,4 +132,5 @@ module.exports = {
   zip,
   sortedIndex,
   flatten,
+  intersection,
 };
