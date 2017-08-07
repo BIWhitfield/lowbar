@@ -55,9 +55,17 @@ function invoke(list, method) {
   });
 }
 
+function sortBy(list, iteratee) {
+  if (typeof iteratee === 'function') {
+    return list.sort((a, b) => iteratee(a) - iteratee(b));
+  }
+  return list.sort((a, b) => a[iteratee] - b[iteratee]);
+}
+
 module.exports = {
   once,
   memoize,
   shuffle,
   invoke,
+  sortBy,
 };
