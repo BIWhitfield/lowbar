@@ -152,6 +152,20 @@ _.pluck = function (list, propertyName) {
 };
 
 
+_.reduce = function (collection, iteratee, memo) {
+  memo = memo || 0;
+  if (Array.isArray(collection)) {
+    for (let i = 0; i < collection.length; i++) {
+      memo = iteratee(memo, collection[i], i, collection);
+    }
+  } else {
+    for (const key in collection) {
+      memo = iteratee(memo, collection[key], key, collection);
+    }
+  }
+  return memo;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
