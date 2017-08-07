@@ -2,6 +2,13 @@
 	"extends": "airbnb-base",
 	"rules": {
 		"no-console": "off",
-		"max-len": 0
+		"max-len": 0,
+		"no-unused-vars": [
+			2,
+			{
+				"args": "after-used",
+				"argsIgnorePattern": "it"
+			}
+		]
 	}
 }

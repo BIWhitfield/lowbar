@@ -66,4 +66,45 @@ describe('_', () => {
       expect(result).to.eql(undefined);
     });
   });
+
+  describe('#each', () => {
+    it('is a function', () => {
+      expect(_.each).to.be.a('function');
+    });
+    it('calls the passed function as many times as elements in the array', () => {
+      let count = 0;
+      _.each([1, 2, 3], () => {
+        count++;
+      });
+      expect(count).to.equal(3);
+    });
+    it('calls the function with each item of the array as the first argument', () => {
+      const basket = [];
+      function putItemInBasket(item) {
+        basket.push(item);
+      }
+      _.each([1, 2, 3], putItemInBasket);
+      expect(basket).to.eql([1, 2, 3]);
+    });
+    it('works with objects', () => {
+      const actual = [];
+      const expected = [1, 2, 3];
+      _.each({ one: 1, two: 2, three: 3 }, num => actual.push(num));
+      expect(actual).to.eql(expected);
+    });
+    it('calls the function with each item of the array as first argument with its index', () => {
+      const basket = [];
+      function putItemInBasket(item, i) {
+        basket.push(item, i);
+      }
+      _.each([1, 2, 3], putItemInBasket);
+      expect(basket).to.eql([1, 0, 2, 1, 3, 2]);
+    });
+    it('calls the iteratee function with each element from the list', () => {
+      const spy = sinon.spy();
+      _.each([1, 2, 3], spy);
+      _.each({ one: 1, two: 2, three: 3 }, spy);
+      expect(spy.callCount).to.equal(6);
+    });
+  });
 });
