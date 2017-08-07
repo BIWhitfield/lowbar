@@ -236,7 +236,6 @@ describe('_', () => {
     });
   });
 
-
   describe('#contains', () => {
     it('is a function', () => {
       expect(_.contains).to.be.a('function');
@@ -257,4 +256,18 @@ describe('_', () => {
     });
   });
 
+  describe('#pluck', () => {
+    it('is a function', () => {
+      expect(_.pluck).to.be.a('function');
+    });
+    it('returns an empty array when an invalid type is passed as an argument', () => {
+      const actual = _.pluck(1, 'name');
+      const expected = [];
+      expect(actual).to.eql(expected);
+    });
+    it('should return the property values that match the passed in propertyName', () => {
+      const stooges = [{ name: 'moe', age: 40 }, { name: 'larry', age: 50 }, { name: 'curly', age: 60 }];
+      expect(_.pluck(stooges, 'name')).to.eql(['moe', 'larry', 'curly']);
+    });
+  });
 });
