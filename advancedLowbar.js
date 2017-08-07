@@ -66,6 +66,24 @@ function zip(...args) {
   return Object.keys(args[0]).map(key => args.map(array => array[key]));
 }
 
+function sortedIndex(list, value, iteratee, context) {
+  if (!Array.isArray(list)) return 0;
+  
+  let startIndex = 0;
+  let stopIndex = list.length - 1;
+  let index = (startIndex + stopIndex) >> 1;
+
+  while (list[index] !== value && startIndex < stopIndex) {
+    if (value < list[index]) {
+      stopIndex = index - 1;
+    } else if (value > list[index]) {
+      startIndex = index + 1;
+    }
+    index = (startIndex + stopIndex) >> 1;
+    return index;
+  }
+}
+
 module.exports = {
   once,
   memoize,
@@ -73,4 +91,5 @@ module.exports = {
   invoke,
   sortBy,
   zip,
+  sortedIndex,
 };

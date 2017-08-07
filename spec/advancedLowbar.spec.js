@@ -7,6 +7,7 @@ const {
   invoke,
   sortBy,
   zip,
+  sortedIndex,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -156,5 +157,23 @@ describe('zip', () => {
   it('merges the values of each array with values at corresponding positions', () => {
     const output = [['Pat', 35, true], ['Dave', 41, true], ['Neil', 60, false]];
     expect(zip(['Pat', 'Dave', 'Neil'], [35, 41, 60], [true, true, false])).to.eql(output);
+  });
+});
+
+describe('sortedIndex', () => {
+  it('is a function', () => {
+    expect(sortedIndex).to.be.a('function');
+  });
+
+  it('returns the index at which the value should be inserted in the list to maintain order', () => {
+    const actual = sortedIndex([1, 2, 3, 5, 6], 4);
+    const expected = 3;
+    expect(actual).to.equal(expected);
+  });
+
+  it('handles invalid inputs', () => {
+    expect(sortedIndex()).to.equal(0);
+    expect(sortedIndex(null)).to.equal(0);
+    expect(sortedIndex(false)).to.equal(0);
   });
 });
