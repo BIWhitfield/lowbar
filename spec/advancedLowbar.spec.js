@@ -1,6 +1,12 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
-const { once, memoize, shuffle, invoke } = require('../advancedLowbar.js');
+const {
+  once,
+  memoize,
+  shuffle,
+  invoke,
+  sortBy,
+} = require('../advancedLowbar.js');
 
 describe('once', () => {
   it('is a function', () => {
@@ -118,12 +124,25 @@ describe('invoke', () => {
     expect(actual).to.eql(expected);
   });
   it('handles objects inputs', () => {
-    const actual = invoke({ 1: 1, 2: 2 }, 'toString');
+    const actual = invoke({ one: 1, two: 2 }, 'toString');
     const expected = ['1', '2'];
     expect(actual).to.eql(expected);
   });
   it('handles invalid inputs', () => {
     expect(invoke()).to.eql([]);
     expect(invoke([3, 2])).to.eql([undefined, undefined]);
+  });
+});
+
+
+describe('sortBy', () => {
+  it('it should be a function', () => {
+    expect(sortBy).to.be.a('function');
+  });
+  it('returns an ascended sorted copy of the list, using the result of running each value though the iteratee', () => {
+    const list = [1, 2, 3, 4, 5, 6];
+    const iteratee = num => Math.sin(num);
+    const expected = [5, 4, 6, 3, 1, 2];
+    expect(sortBy(list, iteratee)).to.eql(expected);
   });
 });
