@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const sinon = require('sinon');
-const { once, memoize } = require('../advancedLowbar.js');
+const { once, memoize, shuffle } = require('../advancedLowbar.js');
 
 describe('once', () => {
   it('is a function', () => {
@@ -72,3 +72,16 @@ describe('memoize', () => {
   });
 });
 
+
+describe('shuffle', () => {
+  it('is a function', () => {
+    expect(shuffle).to.be.a('function');
+  });
+  it('should receive 1 argument', () => {
+    expect(shuffle.length).to.equal(1);
+  });
+  it('should return a randomly shuffled array of the same length', () => {
+    const sortedArray = [1, 2, 3, 4, 5];
+    expect(shuffle(sortedArray)).to.have.lengthOf(5);
+  });
+});
