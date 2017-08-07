@@ -314,7 +314,7 @@ describe('_', () => {
     it('[every] should return a false for an array with an odd number in it', () => {
       const everyTest = _.every(
         [2, 4, 6, 7, 8, 9, 10],
-       num => num % 2 === 0);
+        num => num % 2 === 0);
       expect(everyTest).to.equal(false);
     });
     it('works for objects as well as arrays', () => {
@@ -364,6 +364,27 @@ describe('_', () => {
     });
     it('updates the destination object if the source has the same key', () => {
       expect(_.extends({ name: 'Ben', instrument: 'guitar' }, { instrument: 'drums' })).to.eql({ name: 'Ben', instrument: 'drums' });
+    });
+  });
+
+  describe('#defaults', () => {
+    it('is a function', () => {
+      expect(_.defaults).to.be.a('function');
+    });
+    it('returns the destination when not passed a second argument', () => {
+      const actual = _.defaults({ gym: 'no' });
+      const expected = { gym: 'no' };
+      expect(actual).to.eql(expected);
+    });
+    it('fills in undefined properties in object with the first value present in the list of defaults objects', () => {
+      const actual = _.defaults({ animal: 'cat' }, { animal: 'dog', colour: 'ginger' });
+      const expected = { animal: 'cat', colour: 'ginger' };
+      expect(actual).to.eql(expected);
+    });
+    it('does not update existing keys', () => {
+      const actual = _.defaults({ instrument: 'guitar' }, { instrument: 'drums', vocals: 'no' });
+      const expected = { instrument: 'guitar', vocals: 'no' };
+      expect(actual).to.eql(expected);
     });
   });
 });
