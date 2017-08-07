@@ -21,34 +21,34 @@ This project is made up of two parts. The first is an implementation of some of 
 
 ## Lowbar
 
-identity
-first
-last
-each
-indexOf (including binary search)
-filter
-reject
-uniq
-map
-pluck
-reduce
-contains
-every
-some
-extends
-defaults
+* identity
+* first
+* last
+* each
+* indexOf (including binary search)
+* filter
+* reject
+* uniq
+* map
+* pluck
+* reduce
+* contains
+* every
+* some
+* extends
+* defaults
 
 ## Advanced Lowbar
 
-once
-memoize
-delay
-shuffle
-invoke
-sortBy 
-zip
-sortedIndex
-flatten
-intersection
-difference
-throttle
+* once
+* memoize
+* delay
+* shuffle
+* invoke
+* sortBy 
+* zip
+* sortedIndex
+* flatten
+* intersection
+* difference
+* throttle
