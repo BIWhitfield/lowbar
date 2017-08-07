@@ -22,7 +22,18 @@ _.last = function (array, n) {
 };
 
 
-
+_.each = (array, func) => {
+  if (Array.isArray(array) || typeof array === 'string') {
+    for (let i = 0; i < array.length; i++) {
+      func(array[i], i, array);
+    }
+  } if (typeof array === 'object' && !Array.isArray(array)) {
+      for (const key in array) {
+        func(array[key], key, array);
+      }
+  }
+  return array;
+};
 
 if (typeof module !== 'undefined') {
   module.exports = _;
