@@ -9,6 +9,7 @@ const {
   zip,
   sortedIndex,
   flatten,
+  intersection,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -182,24 +183,42 @@ describe('flatten', () => {
   it('is a function', () => {
     expect(flatten).to.be.a('function');
   });
-
   it('handles invalid inputs', () => {
     expect(flatten()).to.eql([]);
     expect(flatten(null)).to.eql([]);
     expect(flatten({ 1: 1 })).to.eql([]);
   });
-
   it('flattens a one depth nested array', () => {
     expect(flatten([1, [2]])).to.eql([1, 2]);
   });
-
   it('flattens nested arrays', () => {
     expect(flatten([1, [[[2]]]])).to.eql([1, 2]);
     expect(flatten([1, [[[[2, [[[[[3]]]]]]]]]])).to.eql([1, 2, 3]);
   });
-
   it('accepts a shallow parameter flatten just one level', () => {
     expect(flatten([1, [[[[2]]]]], true)).to.eql([1, [[[2]]]]);
     expect(flatten([1, [[[[2]]]]], undefined)).to.eql([1, 2]);
+  });
+});
+
+
+describe('intersection', () => {
+  it('is a function', () => {
+    expect(intersection).to.be.a('function');
+  });
+  it('handles invalid inputs', () => {
+    expect(intersection()).to.eql([]);
+    expect(intersection(null)).to.eql([]);
+    expect(intersection({ 1: 1 })).to.eql([]);
+  });
+  it('finds the values common in all arrays given', () => {
+    const actual = intersection([1, 2, 3], [101, 2, 1, 10], [2, 1]);
+    const expected = [1, 2];
+    expect(actual).to.eql(expected);
+  });
+  it('finds the values common in all arrays and objects given', () => {
+    const actual = intersection([1, 2, 3], [101, 2, 1, 10], { 1: 1, 2: 2 });
+    const expected = [1, 2];
+    expect(actual).to.eql(expected);
   });
 });
