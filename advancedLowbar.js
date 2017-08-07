@@ -46,8 +46,18 @@ function shuffle(arr) {
   return _.flatten(shuffled);
 }
 
+function invoke(list, method) {
+  const args = Array.prototype.slice.call(arguments, 2);
+
+  return _.map(list, (elem) => {
+    const func = elem[method];
+    return func ? func.apply(elem, args) : elem.null;
+  });
+}
+
 module.exports = {
   once,
   memoize,
   shuffle,
+  invoke,
 };
