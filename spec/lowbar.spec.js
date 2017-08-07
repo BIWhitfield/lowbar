@@ -28,4 +28,23 @@ describe('_', () => {
       expect(result).to.equal(input);
     });
   });
+
+  describe('#first', () => {
+    it('is a function', () => {
+      expect(_.first).to.be.a('function');
+    });
+    it('should return 1 for first( [1,2,3], 1 )', () => {
+      expect(_.first([1, 2, 3], 1)).to.eql([1]);
+    });
+    it('should return [4, 5] for first( [4,5,6], 2 )', () => {
+      expect(_.first([4, 5, 6], 2)).to.eql([4, 5]);
+    });
+    it('should return [7, 8, 9] for first( [7, 8, 9], 3 )', () => {
+      expect(_.first([7, 8, 9], 3)).to.eql([7, 8, 9]);
+    });
+    it('should return undefined if not passed an argument', () => {
+      const result = _.first();
+      expect(result).to.eql(undefined);
+    });
+  });
 });
