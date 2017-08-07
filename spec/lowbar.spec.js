@@ -235,4 +235,24 @@ describe('_', () => {
       expect(spy.callCount).to.equal(4);
     });
   });
+
+  describe('#contains', () => {
+    it('is a function', () => {
+      expect(_.contains).to.be.a('function');
+    });
+    it('should return true if the value (number) is present in the list', () => {
+      expect(_.contains([1, 2, 3], 3)).to.equal(true);
+    });
+    it('should return true if the value (string) is present in the list', () => {
+      expect(_.contains(['one', 'two', 'three'], 'two')).to.equal(true);
+    });
+    it('should return false if the value (string) is not present in the list', () => {
+      expect(_.contains(['one', 'two', 'three'], 'four')).to.equal(false);
+    });
+    it('it should start searching at the index provided as the third argument', () => {
+      expect(_.contains([1, 2, 3], 1, 1)).to.equal(false);
+      expect(_.contains([1, 2, 3, 1], 1, 2)).to.equal(true);
+      expect(_.contains([1, 2, 3, 4, 5, 6, 6, 6, 6, 7, 6, 6, 8], 7, 8)).to.equal(true);
+    });
+  });
 });
