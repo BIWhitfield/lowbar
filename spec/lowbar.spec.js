@@ -298,4 +298,43 @@ describe('_', () => {
       expect(spy.callCount).to.equal(4);
     });
   });
+
+  describe('#every', () => {
+    it('is a function', () => {
+      expect(_.every).to.be.a('function');
+    });
+    it('[every] should return a boolean', () => {
+      const everyTest = _.every([2, 4, 6], (num) => {
+        return num % 2 === 0;
+      });
+      expect(everyTest).to.equal(true);
+    });
+    it('[every] should return a true for an array of all even numbers', () => {
+      const everyTest = _.every([2, 4, 6, 8, 10], (num) => { 
+        return num % 2 == 0; });
+      expect(everyTest).to.equal(true);
+    });
+    it('[every] should return a false for an array with an odd number in it', () => {
+      const everyTest = _.every(
+        [2, 4, 6, 7, 8, 9, 10],
+       (num) => {
+          return num % 2 == 0;
+        });
+      expect(everyTest).to.equal(false);
+    });
+    it('works for objects as well as arrays', () => {
+      const list = { one: 1, two: 2, three: 3 };
+      const predicate = (num) => { return num > 0; };
+      const actual = _.every(list, predicate);
+      const expected = true;
+      expect(actual).to.equal(expected);
+    });
+    it('short-circuits and stops traversing the list if a false element is found', () => {
+      const list = [1, 2, 3];
+      const predicate = (num) => { return num < 3; };
+      const actual = _.every(list, predicate);
+      const expected = false;
+      expect(actual).to.equal(expected);
+    });
+  });
 });
