@@ -276,14 +276,14 @@ describe('_', () => {
       expect(_.reduce).to.be.a('function');
     });
     it('should return a single value', () => {
-      expect(_.reduce([1, 2, 3], (memo, num) => { return memo + num; }, 0)).to.equal(6);
+      expect(_.reduce([1, 2, 3], (memo, num) => memo + num, 0)).to.equal(6);
     });
     it('returns the initial value of the memo if passed identity as the iteratee', () => {
       const memo = {};
       expect(_.reduce([1, 2, 3], _.identity, memo)).to.equal(memo);
     });
     it('works for objects as well as arrays', () => {
-      const actual = _.reduce({ one: 1, two: 2, three: 3 }, (acc, val) => { return acc + val; }, 0);
+      const actual = _.reduce({ one: 1, two: 2, three: 3 }, (acc, val) => acc + val, 0);
       const expected = 6;
       expect(actual).to.equal(expected);
     });
@@ -304,34 +304,29 @@ describe('_', () => {
       expect(_.every).to.be.a('function');
     });
     it('[every] should return a boolean', () => {
-      const everyTest = _.every([2, 4, 6], (num) => {
-        return num % 2 === 0;
-      });
+      const everyTest = _.every([2, 4, 6], num => num % 2 === 0);
       expect(everyTest).to.equal(true);
     });
     it('[every] should return a true for an array of all even numbers', () => {
-      const everyTest = _.every([2, 4, 6, 8, 10], (num) => { 
-        return num % 2 == 0; });
+      const everyTest = _.every([2, 4, 6, 8, 10], num => num % 2 === 0);
       expect(everyTest).to.equal(true);
     });
     it('[every] should return a false for an array with an odd number in it', () => {
       const everyTest = _.every(
         [2, 4, 6, 7, 8, 9, 10],
-       (num) => {
-          return num % 2 == 0;
-        });
+       num => num % 2 === 0);
       expect(everyTest).to.equal(false);
     });
     it('works for objects as well as arrays', () => {
       const list = { one: 1, two: 2, three: 3 };
-      const predicate = (num) => { return num > 0; };
+      const predicate = num => num > 0;
       const actual = _.every(list, predicate);
       const expected = true;
       expect(actual).to.equal(expected);
     });
     it('short-circuits and stops traversing the list if a false element is found', () => {
       const list = [1, 2, 3];
-      const predicate = (num) => { return num < 3; };
+      const predicate = num => num < 3;
       const actual = _.every(list, predicate);
       const expected = false;
       expect(actual).to.equal(expected);
