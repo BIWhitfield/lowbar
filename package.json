@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/BIWhitfield/lowbar#readme",
   "dependencies": {
-    "eslint-plugin-import": "^2.7.0"
+    "eslint-plugin-import": "^2.7.0",
+    "underscore": "^1.8.3"
   }
 }
