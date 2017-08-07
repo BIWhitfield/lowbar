@@ -6,6 +6,7 @@ const {
   shuffle,
   invoke,
   sortBy,
+  zip,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -144,5 +145,16 @@ describe('sortBy', () => {
     const iteratee = num => Math.sin(num);
     const expected = [5, 4, 6, 3, 1, 2];
     expect(sortBy(list, iteratee)).to.eql(expected);
+  });
+});
+
+
+describe('zip', () => {
+  it('it is a function', () => {
+    expect(zip).to.be.a('function');
+  });
+  it('merges the values of each array with values at corresponding positions', () => {
+    const output = [['Pat', 35, true], ['Dave', 41, true], ['Neil', 60, false]];
+    expect(zip(['Pat', 'Dave', 'Neil'], [35, 41, 60], [true, true, false])).to.eql(output);
   });
 });
