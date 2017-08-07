@@ -74,7 +74,6 @@ function zip(...args) {
 
 function sortedIndex(list, value, iteratee) {
   if (!Array.isArray(list)) return 0;
-
   let startIndex = 0;
   let stopIndex = list.length - 1;
   let index = (startIndex + stopIndex) >> 1;
