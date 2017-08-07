@@ -10,6 +10,7 @@ const {
   sortedIndex,
   flatten,
   intersection,
+  difference,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -220,5 +221,18 @@ describe('intersection', () => {
     const actual = intersection([1, 2, 3], [101, 2, 1, 10], { 1: 1, 2: 2 });
     const expected = [1, 2];
     expect(actual).to.eql(expected);
+  });
+});
+
+describe('difference', () => {
+  it('is a function', () => {
+    expect(difference).to.be.a('function');
+  });
+  it('if value is present in all arrays, add to results array', () => {
+    const actual = difference([1, 2, 3, 4, 5], [5, 2, 10]);
+    expect(actual).to.eql([1, 3, 4]);
+  });
+  it('works for any number of arrays', () => {
+    expect(difference([1, 2, 3], [2, 6, 7], [2, 9, 10, 11, 23], [100, 898, 89898, 2])).to.eql([1, 3]);
   });
 });

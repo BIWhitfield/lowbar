@@ -123,6 +123,18 @@ function intersection(...args) {
   return result;
 }
 
+
+function difference() {
+  const result = [];
+  const args = [...arguments];
+  const alternate = args.slice(1, args.length);
+  for (let j = 0; j < args[0].length; j++) {
+    const current = args[0][j];
+    if (_.every(alternate, array => !_.contains(array, current))) { result.push(current); }
+  }
+  return result;
+}
+
 module.exports = {
   once,
   memoize,
@@ -133,4 +145,5 @@ module.exports = {
   sortedIndex,
   flatten,
   intersection,
+  difference,
 };
