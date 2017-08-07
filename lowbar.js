@@ -81,6 +81,22 @@ _.filter = function (array, func) {
   return result;
 };
 
+
+_.reject = function (array, func) {
+  const result = [];
+  if (Array.isArray(array)) {
+    for (let i = 0; i < array.length; i++) {
+      if (!func(array[i])) result.push(array[i]);
+    }
+    return result;
+  }
+  for (const key in array) {
+    if (!func(array[key])) result.push(array[key]);
+  }
+  return result;
+};
+
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
