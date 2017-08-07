@@ -27,6 +27,7 @@ function memoize(fn, hash) {
 }
 
 function shuffle(arr) {
+  if (!Array.isArray(arr) && typeof arr !== 'object') return [];
   const shuffled = [];
 
   while (arr.length > 0) {

@@ -94,4 +94,8 @@ describe('shuffle', () => {
     const sortedArray = [1, 2, 3, 4, 5];
     expect(shuffle(sortedArray)).to.have.lengthOf(5);
   });
+  it('should return an empty array for invalid arguments', () => {
+    expect(shuffle()).to.eql([]);
+    expect(shuffle(10)).to.eql([]);
+  });
 });
