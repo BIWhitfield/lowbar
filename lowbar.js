@@ -127,6 +127,7 @@ _.map = function (array, func) {
   return newArray;
 };
 
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
