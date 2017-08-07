@@ -155,4 +155,35 @@ describe('_', () => {
       expect(_.filter(emptyArray)).to.eql([]);
     });
   });
+
+  describe('#reject', () => {
+    it('is a function', () => {
+      expect(_.reject).to.be.a('function');
+    });
+    it('should return the values in the list that do not pass the truthy test', () => {
+      const findOdds = [1, 2, 3, 4, 5, 6, 7];
+      expect(_.reject(findOdds, num => num % 2 === 0)).to.eql([1, 3, 5, 7]);
+    });
+    it('should return words no longer than 5 letters long', () => {
+      const sentence = ['What', 'even', 'is', 'life', 'maaaate?'];
+      function wordOverFiveLetters(word) {
+        return word.length > 5;
+      }
+      expect(_.reject(sentence, wordOverFiveLetters)).to.eql([
+        'What',
+        'even',
+        'is',
+        'life',
+      ]);
+    });
+    it('should return [] if passed an empty array', () => {
+      const emptyArray = [];
+      expect(_.reject(emptyArray)).to.eql([]);
+    });
+    it('should work when the list is an object or an array', () => {
+      const list = { one: 1, two: 2, three: 3 };
+      const predicate = n => n >= 2;
+      expect(_.reject(list, predicate)).to.eql([1]);
+    });
+  });
 });
