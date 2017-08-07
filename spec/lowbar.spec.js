@@ -47,4 +47,23 @@ describe('_', () => {
       expect(result).to.eql(undefined);
     });
   });
+
+  describe('#last', () => {
+    it('is a function', () => {
+      expect(_.last).to.be.a('function');
+    });
+    it('should return 3 for last( [1,2,3], 1 )', () => {
+      expect(_.last([1, 2, 3], 1)).to.eql([3]);
+    });
+    it('should return [5, 6] for last( [4,5,6], 2 )', () => {
+      expect(_.last([4, 5, 6], 2)).to.eql([5, 6]);
+    });
+    it('should return [7, 8, 9] for last( [7, 8, 9], 3 )', () => {
+      expect(_.last([7, 8, 9], 3)).to.eql([7, 8, 9]);
+    });
+    it('should return undefined if not passed an argument', () => {
+      const result = _.last();
+      expect(result).to.eql(undefined);
+    });
+  });
 });
