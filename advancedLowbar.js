@@ -2,22 +2,25 @@ const _ = require('underscore');
 
 function once(func) {
   let called = false;
+  let result;
   return function () {
     if (!called) {
       called = true;
-      return func.apply(null, arguments);
+      result = func.apply(this, arguments);
     }
+    return result;
   };
 }
 
 
 function memoize(fn, hash) {
   const cache = {};
-  const memo = function (key) {
-    if (!(key in cache)) {
-      cache[key] = fn.apply(null, arguments);
+  const memo = function () {
+    const args = hash ? hash.apply(null, arguments) : JSON.stringify(arguments[0]);
+    if (!cache[args]) {
+      cache[args] = fn.apply(null, arguments);
     }
-    return cache[key];
+    return cache[args];
   };
   memo.cache = cache;
   return memo;

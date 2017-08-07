@@ -70,6 +70,16 @@ describe('memoize', () => {
     memDble(2);
     expect(memDble.cache).to.eql({ 2: 4 });
   });
+  it('has a hash as a second argument to work out the hash key for storing', () => {
+    const iteratee = n => n * 2;
+    const hashFunction = n => `num${n}`;
+    const test = memoize(iteratee, hashFunction);
+    test(2);
+
+    const actual = test.cache;
+    const expected = { num2: 4 };
+    expect(actual).to.eql(expected);
+  });
 });
 
 
