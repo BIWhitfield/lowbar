@@ -1,5 +1,5 @@
 const _ = require('underscore');
-const binarySearch = require('./helperFunctions/binarySearch');
+// const binarySearch = require('./helperFunctions/binarySearch');
 
 function once(func) {
   let called = false;
