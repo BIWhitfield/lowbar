@@ -351,4 +351,19 @@ describe('_', () => {
       expect(_.some(list, predicate)).to.equal(false);
     });
   });
+
+  describe('#extends', () => {
+    it('is a function', () => {
+      expect(_.extends).to.be.a('function');
+    });
+    it('returns the destination when not passed a second argument', () => {
+      expect(_.extends({ name: 'Ben' })).to.eql({ name: 'Ben' });
+    });
+    it('shallow copies all the properties in the source object(s) over to the destination object, (returns the destination object)', () => {
+      expect(_.extends({ name: 'Ben' }, { instrument: 'guitar' })).to.eql({ name: 'Ben', instrument: 'guitar' });
+    });
+    it('updates the destination object if the source has the same key', () => {
+      expect(_.extends({ name: 'Ben', instrument: 'guitar' }, { instrument: 'drums' })).to.eql({ name: 'Ben', instrument: 'drums' });
+    });
+  });
 });
