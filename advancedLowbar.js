@@ -135,6 +135,24 @@ function difference() {
   return result;
 }
 
+
+function throttle(func, wait) {
+  const args = [...arguments].slice(2, arguments.length);
+  let result;
+  let counter = 0;
+  return () => {
+    if (counter === 0) {
+      result = func.apply(null, [args]);
+      return result;
+    }
+    while (counter > 0) {
+      counter--;
+      result = _.delay(func, wait);
+      return result;
+    }
+  };
+}
+
 module.exports = {
   once,
   memoize,
@@ -146,4 +164,5 @@ module.exports = {
   flatten,
   intersection,
   difference,
+  throttle,
 };

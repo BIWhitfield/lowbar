@@ -11,6 +11,7 @@ const {
   flatten,
   intersection,
   difference,
+  throttle,
 } = require('../advancedLowbar.js');
 
 describe('once', () => {
@@ -234,5 +235,24 @@ describe('difference', () => {
   });
   it('works for any number of arrays', () => {
     expect(difference([1, 2, 3], [2, 6, 7], [2, 9, 10, 11, 23], [100, 898, 89898, 2])).to.eql([1, 3]);
+  });
+});
+
+describe('throttle', () => {
+  it('is a function', () => {
+    expect(throttle).to.be.a('function');
+  });
+  it('should call the function once per wait', () => {
+    let clock;
+    before(() => clock = sinon.useFakeTimers());
+    it('performs wait', () => {
+      const callback = sinon.spy();
+      const throttled = throttle(callback, 100);
+      throttled();
+      clock.tick(99);
+      expect(callback.notCalled).to.equal(true);
+      clock.tick(1);
+      expect(callback.calledOnce).to.equal(true);
+    });
   });
 });
