@@ -28,11 +28,41 @@ _.each = (array, func) => {
       func(array[i], i, array);
     }
   } if (typeof array === 'object' && !Array.isArray(array)) {
-      for (const key in array) {
-        func(array[key], key, array);
-      }
+    for (const key in array) {
+      func(array[key], key, array);
+    }
   }
   return array;
+};
+
+
+_.indexOf = function (array, index, isSorted) {
+  isSorted = isSorted || false;
+  if (isSorted) {
+    let first = 0;
+    let last = array.length - 1;
+    let mid;
+    while (first < last) {
+      mid = Math.floor((first + last) / 2);
+      if (array[mid] === index) {
+        return mid;
+      }
+      if (index < array[mid]) {
+        last = mid - 1;
+      } else {
+        first = mid + 1;
+      }
+    }
+    return -1;
+  }
+  let counter = array.length;
+  while (counter > 0) {
+    for (let i = 0; i < array.length; i++) {
+      counter--;
+      if (array[i] === index) return i;
+    }
+  }
+  return -1;
 };
 
 if (typeof module !== 'undefined') {
