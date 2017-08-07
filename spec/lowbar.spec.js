@@ -107,4 +107,28 @@ describe('_', () => {
       expect(spy.callCount).to.equal(6);
     });
   });
+
+  describe('#indexOf', () => {
+    it('is a function', () => {
+      expect(_.indexOf).to.be.a('function');
+    });
+    it('returns the index of the item', () => {
+      expect(_.indexOf([1, 2, 3], 2)).to.eql(1);
+    });
+    it('returns the index of the item', () => {
+      expect(_.indexOf([1, 2, 3], 1)).to.eql(0);
+    });
+    it('should return -1 if the value is not present in the array', () => {
+      expect(_.indexOf([1, 2, 3], 52)).to.eql(-1);
+    });
+    it('uses a binary search if true is passed as an argument for isSorted', () => {
+      let actual = _.indexOf([1, 2, 3, 4, 5], 3, true);
+      let expected = 2;
+      actual = _.indexOf(['a', 'b', 'c', 'd'], 'c', true);
+      expected = 2;
+      actual = _.indexOf([1, 2, 2, 3], 2, true);
+      expected = 1;
+      expect(actual).to.equal(expected);
+    });
+  });
 });
