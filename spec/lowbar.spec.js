@@ -270,4 +270,32 @@ describe('_', () => {
       expect(_.pluck(stooges, 'name')).to.eql(['moe', 'larry', 'curly']);
     });
   });
+
+  describe('#reduce', () => {
+    it('is a function', () => {
+      expect(_.reduce).to.be.a('function');
+    });
+    it('should return a single value', () => {
+      expect(_.reduce([1, 2, 3], (memo, num) => { return memo + num; }, 0)).to.equal(6);
+    });
+    it('returns the initial value of the memo if passed identity as the iteratee', () => {
+      const memo = {};
+      expect(_.reduce([1, 2, 3], _.identity, memo)).to.equal(memo);
+    });
+    it('works for objects as well as arrays', () => {
+      const actual = _.reduce({ one: 1, two: 2, three: 3 }, (acc, val) => { return acc + val; }, 0);
+      const expected = 6;
+      expect(actual).to.equal(expected);
+    });
+    it('passes each element of an array to the iteratee function', () => {
+      const spy = sinon.spy();
+      _.reduce([1, 2, 3], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+    it('passes each element of an object to the iteratee function', () => {
+      const spy = sinon.spy();
+      _.reduce({ one: 1, two: 2, three: 3, four: 4 }, spy);
+      expect(spy.callCount).to.equal(4);
+    });
+  });
 });
