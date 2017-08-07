@@ -236,6 +236,7 @@ describe('_', () => {
     });
   });
 
+
   describe('#contains', () => {
     it('is a function', () => {
       expect(_.contains).to.be.a('function');
@@ -255,4 +256,5 @@ describe('_', () => {
       expect(_.contains([1, 2, 3, 4, 5, 6, 6, 6, 6, 7, 6, 6, 8], 7, 8)).to.equal(true);
     });
   });
+
 });

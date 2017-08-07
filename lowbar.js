@@ -128,6 +128,7 @@ _.map = function (array, func) {
 };
 
 
+
 _.contains = function (array, target, fromIndex) {
   if (Array.isArray(array) && arguments.length === 3) {
     const slice = array.slice(fromIndex);
@@ -145,6 +146,7 @@ _.contains = function (array, target, fromIndex) {
   }
   return false;
 };
+
 
 
 if (typeof module !== 'undefined') {
