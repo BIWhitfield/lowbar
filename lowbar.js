@@ -110,6 +110,23 @@ _.uniq = function (array) {
 };
 
 
+_.map = function (array, func) {
+  array = array || [];
+  const newArray = [];
+  if (!Array.isArray(array)) {
+    for (const prop in array) {
+      const objResult = func(array[prop]);
+      newArray.push(objResult);
+    }
+  }
+
+  for (let i = 0; i < array.length; i++) {
+    const result = func(array[i]);
+    newArray.push(result);
+  }
+  return newArray;
+};
+
 if (typeof module !== 'undefined') {
   module.exports = _;
 }

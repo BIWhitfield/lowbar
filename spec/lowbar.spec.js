@@ -206,4 +206,33 @@ describe('_', () => {
       ]);
     });
   });
+
+  describe('#map', () => {
+    it('is a function', () => {
+      expect(_.map).to.be.a('function');
+    });
+    it('should produce a new array of values based on transformation function', () => {
+      expect(_.map([1, 2, 3], num => num * 3)).to.eql([3, 6, 9]);
+    });
+    it('should work on objects', () => {
+      expect(_.map({ one: 1, two: 2, three: 3 }, num => num * 3)).to.eql([3, 6, 9]);
+    });
+    it('should work for nested arrays', () => {
+      expect(_.map([[1, 2], [3, 4]], _.first)).to.eql([1, 3]);
+    });
+    it('should return [] if passed an empty array', () => {
+      const emptyArray = [];
+      expect(_.map(emptyArray)).to.eql([]);
+    });
+    it('passes each element of an array to the iteratee function', () => {
+      const spy = sinon.spy();
+      _.map([1, 2, 3], spy);
+      expect(spy.callCount).to.equal(3);
+    });
+    it('passes each element of an object to the iteratee function', () => {
+      const spy = sinon.spy();
+      _.map({ one: 1, two: 2, three: 3, four: 4 }, spy);
+      expect(spy.callCount).to.equal(4);
+    });
+  });
 });
