@@ -22,8 +22,6 @@ _.last = function (array, n) {
 };
 
 
-
-
 if (typeof module !== 'undefined') {
   module.exports = _;
 }
