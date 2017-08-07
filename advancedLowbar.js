@@ -62,10 +62,15 @@ function sortBy(list, iteratee) {
   return list.sort((a, b) => a[iteratee] - b[iteratee]);
 }
 
+function zip(...args) {
+  return Object.keys(args[0]).map(key => args.map(array => array[key]));
+}
+
 module.exports = {
   once,
   memoize,
   shuffle,
   invoke,
   sortBy,
+  zip,
 };
