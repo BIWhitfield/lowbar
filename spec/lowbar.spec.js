@@ -186,4 +186,24 @@ describe('_', () => {
       expect(_.reject(list, predicate)).to.eql([1]);
     });
   });
+
+  describe('#uniq', () => {
+    it('is a function', () => {
+      expect(_.uniq).to.be.a('function');
+    });
+    it('should return [] if passed an empty array', () => {
+      const emptyArray = [];
+      expect(_.uniq(emptyArray)).to.eql([]);
+    });
+    it('should return a duplicate free version of the passed in array', () => {
+      const array = [1, 2, 3, 1, 4, 2, 3, 5, 4, 3, 5];
+      expect(_.uniq(array)).to.eql([1, 2, 3, 4, 5]);
+    });
+    it('should return an array of unique words', () => {
+      expect(_.uniq(['hello', 'goodbye', 'hello', 'hello'])).to.eql([
+        'hello',
+        'goodbye',
+      ]);
+    });
+  });
 });
