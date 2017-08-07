@@ -1,4 +1,5 @@
 const _ = require('underscore');
+const binarySearch = require('./helperFunctions/binarySearch');
 
 function once(func) {
   let called = false;
@@ -26,6 +27,7 @@ function memoize(fn, hash) {
   return memo;
 }
 
+
 function shuffle(arr) {
   if (!Array.isArray(arr) && typeof arr !== 'object') return [];
   const shuffled = [];
@@ -46,6 +48,7 @@ function shuffle(arr) {
   return _.flatten(shuffled);
 }
 
+
 function invoke(list, method) {
   const args = Array.prototype.slice.call(arguments, 2);
 
@@ -55,6 +58,7 @@ function invoke(list, method) {
   });
 }
 
+
 function sortBy(list, iteratee) {
   if (typeof iteratee === 'function') {
     return list.sort((a, b) => iteratee(a) - iteratee(b));
@@ -62,13 +66,15 @@ function sortBy(list, iteratee) {
   return list.sort((a, b) => a[iteratee] - b[iteratee]);
 }
 
+
 function zip(...args) {
   return Object.keys(args[0]).map(key => args.map(array => array[key]));
 }
 
-function sortedIndex(list, value, iteratee, context) {
+
+function sortedIndex(list, value, iteratee) {
   if (!Array.isArray(list)) return 0;
-  
+
   let startIndex = 0;
   let stopIndex = list.length - 1;
   let index = (startIndex + stopIndex) >> 1;
