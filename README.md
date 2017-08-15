@@ -3,7 +3,7 @@ A re-implementation of some of the functions from the JS library Underscore.
 
 ## Installation
 
-You will need to have Node.js install to run this. Check if you have Node installed by typing the following in your terminal:
+You will need to have Node.js installed to run this. Check if you have Node installed by typing the following in your terminal:
 
 ``node -v``
 
@@ -28,7 +28,7 @@ Clone the repository to your own machine and install dependencies.
 
 ## About
 
-This project is made up of two parts. The first is an implementation of some of the more simple Underscore methods. The code for these can be found in the Lowbar.js file. The second is an implementation of som eof the more advanced Underscore methods. The code for these can be found in the advancedLowbar.js file.
+This project is made up of two parts. The first is an implementation of some of the more simple Underscore methods. The code for these can be found in the Lowbar.js file. The second is an implementation of some of the more advanced Underscore methods. The code for these can be found in the advancedLowbar.js file.
 
 ## Lowbar
 
