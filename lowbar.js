@@ -151,18 +151,14 @@ _.pluck = function (list, propertyName) {
   return _.map(list, obj => obj[propertyName]);
 };
 
-
-_.reduce = function (collection, iteratee, memo) {
-  memo = memo || 0;
-  if (Array.isArray(collection)) {
-    for (let i = 0; i < collection.length; i++) {
-      memo = iteratee(memo, collection[i], i, collection);
-    }
-  } else {
-    for (const key in collection) {
-      memo = iteratee(memo, collection[key], key, collection);
-    }
-  }
+_.reduce = function (list, iteratee, memo) {
+  let memoUndefined = arguments.length < 3;
+  _.each(list, (elem, index) => {
+    if (memoUndefined) {
+      memoUndefined = false;
+      memo = elem;
+    } else memo = iteratee(memo, elem, index, list);
+  });
   return memo;
 };
 
