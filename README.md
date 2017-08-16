@@ -7,11 +7,15 @@ You will need to have Node.js installed to run this. Check if you have Node inst
 
 ``node -v``
 
+You should see `v8.1.3` if not you may need to upgrade your version to run this.
+
 If you do not have Node installed follow this guide - https://nodejs.org/en/download/package-manager/#osx
 
 You will also need npm installed. Check your version:
 
 ``npm -v``
+
+Again the version used in this project is `4.6.1` and you should see this, or a variation of it, if you have it installed
 
 To install npm follow this guide - https://docs.npmjs.com/getting-started/installing-node
 
