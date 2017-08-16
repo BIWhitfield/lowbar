@@ -1,0 +1,33 @@
+{
+  "name": "lowbar",
+  "version": "1.0.0",
+  "description": "A re-implementation of some of the functions from the JS library Underscore.",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./spec/",
+    "lint": "eslint ./",
+    "posttest": "npm run lint",
+    "precommit": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BIWhitfield/lowbar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BIWhitfield/lowbar/issues"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "husky": "^0.13.1",
+    "sinon": "^3.0.0"
+  },
+  "homepage": "https://github.com/BIWhitfield/lowbar#readme",
+  "dependencies": {
+    "eslint-plugin-import": "^2.7.0",
+    "underscore": "^1.8.3"
+  }
+}
