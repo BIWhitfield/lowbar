@@ -59,7 +59,8 @@ function invoke(list, method) {
 }
 
 
-function sortBy(list, iteratee) {
+function sortBy(list, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);
   if (typeof iteratee === 'function') {
     return list.sort((a, b) => iteratee(a) - iteratee(b));
   }

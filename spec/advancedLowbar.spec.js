@@ -151,6 +151,15 @@ describe('sortBy', () => {
     const expected = [5, 4, 6, 3, 1, 2];
     expect(sortBy(list, iteratee)).to.eql(expected);
   });
+  it('should bind the iteratee to a context object if one is passed', () => {
+    const context = { name: 'Bob' };
+    const result = [];
+    const iteratee = () => {
+      result.push(context.name);
+    };
+    sortBy([1, 2, 3], iteratee, context);
+    expect(result).to.eql(['Bob', 'Bob', 'Bob', 'Bob']);
+  });
 });
 
 
