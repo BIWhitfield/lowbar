@@ -136,22 +136,38 @@ function difference() {
 }
 
 
-function throttle(func, wait) {
-  const args = [...arguments].slice(2, arguments.length);
-  let result;
-  let counter = 0;
-  return () => {
-    if (counter === 0) {
-      result = func.apply(null, [args]);
-      return result;
-    }
-    while (counter > 0) {
-      counter--;
-      result = _.delay(func, wait);
-      return result;
+function throttle(func, delay) {
+  let timer = null;
+  let queued = null;
+
+  function resume() {
+    timer = null;
+    if (queued) queued();
+    queued = null;
+  }
+
+  function setDelay() {
+    timer = setTimeout(resume, delay);
+  }
+
+  return function () {
+    if (queued) return;
+
+    const args = [].slice.call(arguments);
+
+    const invokeFunction = function () {
+      func.apply(null, args);
+      setDelay();
+    };
+
+    if (!timer) {
+      invokeFunction();
+    } else {
+      queued = invocation;
     }
   };
 }
+
 
 module.exports = {
   once,

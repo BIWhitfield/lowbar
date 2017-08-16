@@ -245,7 +245,7 @@ describe('throttle', () => {
   it('should call the function once per wait', () => {
     let clock;
     before(() => clock = sinon.useFakeTimers());
-    it('performs wait', () => {
+    it('performs wait', (done) => {
       const callback = sinon.spy();
       const throttled = throttle(callback, 100);
       throttled();
@@ -253,6 +253,7 @@ describe('throttle', () => {
       expect(callback.notCalled).to.equal(true);
       clock.tick(1);
       expect(callback.calledOnce).to.equal(true);
+      done();
     });
   });
 });
