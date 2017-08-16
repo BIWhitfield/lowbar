@@ -22,14 +22,16 @@ _.last = function (array, n) {
 };
 
 
-_.each = (array, func) => {
+_.each = (array, iteratee, context) => {
+  if (context) iteratee = iteratee.bind(context);
+
   if (Array.isArray(array) || typeof array === 'string') {
     for (let i = 0; i < array.length; i++) {
-      func(array[i], i, array);
+      iteratee(array[i], i, array);
     }
   } if (typeof array === 'object' && !Array.isArray(array)) {
     for (const key in array) {
-      func(array[key], key, array);
+      iteratee(array[key], key, array);
     }
   }
   return array;
@@ -66,32 +68,34 @@ _.indexOf = function (array, index, isSorted) {
 };
 
 
-_.filter = function (array, func) {
+_.filter = function (array, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);
   array = array || [];
   const result = [];
   if (Array.isArray(array)) {
     for (let i = 0; i < array.length; i++) {
-      if (func(array[i])) result.push(array[i]);
+      if (iteratee(array[i])) result.push(array[i]);
     }
     return result;
   }
   for (const key in array) {
-    if (func(array[key])) result.push(array[key]);
+    if (iteratee(array[key])) result.push(array[key]);
   }
   return result;
 };
 
 
-_.reject = function (array, func) {
+_.reject = function (array, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);
   const result = [];
   if (Array.isArray(array)) {
     for (let i = 0; i < array.length; i++) {
-      if (!func(array[i])) result.push(array[i]);
+      if (!iteratee(array[i])) result.push(array[i]);
     }
     return result;
   }
   for (const key in array) {
-    if (!func(array[key])) result.push(array[key]);
+    if (!iteratee(array[key])) result.push(array[key]);
   }
   return result;
 };
@@ -110,18 +114,19 @@ _.uniq = function (array) {
 };
 
 
-_.map = function (array, func) {
+_.map = function (array, iteratee, context) {
+  if (context) iteratee = iteratee.bind(context);
   array = array || [];
   const newArray = [];
   if (!Array.isArray(array)) {
     for (const prop in array) {
-      const objResult = func(array[prop]);
+      const objResult = iteratee(array[prop]);
       newArray.push(objResult);
     }
   }
 
   for (let i = 0; i < array.length; i++) {
-    const result = func(array[i]);
+    const result = iteratee(array[i]);
     newArray.push(result);
   }
   return newArray;
@@ -151,7 +156,8 @@ _.pluck = function (list, propertyName) {
   return _.map(list, obj => obj[propertyName]);
 };
 
-_.reduce = function (list, iteratee, memo) {
+_.reduce = function (list, iteratee, memo, context) {
+  if (context) iteratee = iteratee.bind(context);
   let memoUndefined = arguments.length < 3;
   _.each(list, (elem, index) => {
     if (memoUndefined) {
@@ -163,7 +169,8 @@ _.reduce = function (list, iteratee, memo) {
 };
 
 
-_.every = function (list, predicate) {
+_.every = function (list, predicate, context) {
+  if (context) iteratee = predicate.bind(context);
   if (Array.isArray(list)) {
     for (let i = 0; i < list.length; i++) {
       if (!predicate(list[i])) return false;
@@ -177,7 +184,8 @@ _.every = function (list, predicate) {
 };
 
 
-_.some = function (list, predicate) {
+_.some = function (list, predicate, context) {
+  if (context) iteratee = predicate.bind(context);
   if (Array.isArray(list)) {
     for (let i = 0; i < list.length; i++) {
       if (predicate(list[i])) return true;

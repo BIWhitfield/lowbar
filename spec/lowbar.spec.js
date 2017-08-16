@@ -92,6 +92,15 @@ describe('_', () => {
       _.each({ one: 1, two: 2, three: 3 }, num => actual.push(num));
       expect(actual).to.eql(expected);
     });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.each([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
+    });
     it('calls the function with each item of the array as first argument with its index', () => {
       const basket = [];
       function putItemInBasket(item, i) {
@@ -154,6 +163,15 @@ describe('_', () => {
       const emptyArray = [];
       expect(_.filter(emptyArray)).to.eql([]);
     });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.filter([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
+    });
   });
 
   describe('#reject', () => {
@@ -175,6 +193,15 @@ describe('_', () => {
         'is',
         'life',
       ]);
+    });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.reject([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
     });
     it('should return [] if passed an empty array', () => {
       const emptyArray = [];
@@ -234,6 +261,15 @@ describe('_', () => {
       _.map({ one: 1, two: 2, three: 3, four: 4 }, spy);
       expect(spy.callCount).to.equal(4);
     });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.map([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
+    });
   });
 
   describe('#contains', () => {
@@ -289,6 +325,15 @@ describe('_', () => {
       expect(actual).to.equal(expected);
       expect(_.reduce({ one: 1, two: 2, three: 3 }, (acc, val) => acc + val)).to.equal(6);
     });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.reduce([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
+    });
     it('skips the first element if not passed memo and passes each element of the array to the iteratee function', () => {
       const spy = sinon.spy();
       _.reduce([1, 2, 3], spy);
@@ -333,6 +378,15 @@ describe('_', () => {
       const expected = false;
       expect(actual).to.equal(expected);
     });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.every([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob']);
+    });
   });
 
   describe('#some', () => {
@@ -351,6 +405,15 @@ describe('_', () => {
       const list = [1, 2, 3];
       const predicate = num => num > 10;
       expect(_.some(list, predicate)).to.equal(false);
+    });
+    it('should bind the iteratee to a context object if one is passed', () => {
+      const context = { name: 'Bob' };
+      const result = [];
+      const iteratee = () => {
+        result.push(context.name);
+      };
+      _.some([1, 2, 3], iteratee, context);
+      expect(result).to.eql(['Bob', 'Bob', 'Bob']);
     });
   });
 
