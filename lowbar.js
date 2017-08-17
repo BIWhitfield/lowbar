@@ -158,11 +158,10 @@ _.pluck = function (list, propertyName) {
 
 _.reduce = function (list, iteratee, memo, context) {
   if (context) iteratee = iteratee.bind(context);
-  let memoUndefined = arguments.length < 3;
   _.each(list, (elem, index) => {
-    if (memoUndefined) {
-      memoUndefined = false;
+    if (!memo) {
       memo = elem;
+      iteratee(memo, elem, index, list);
     } else memo = iteratee(memo, elem, index, list);
   });
   return memo;

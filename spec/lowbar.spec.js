@@ -312,8 +312,8 @@ describe('_', () => {
       expect(_.reduce).to.be.a('function');
     });
     it('should return a single value with and without memo', () => {
-      expect(_.reduce([1, 2, 3], (memo, num) => memo + num, 0)).to.equal(6);
-      expect(_.reduce([1, 2, 3], (memo, num) => memo + num)).to.equal(6);
+      expect(_.reduce([1, 2, 3], (acc, num) => acc + num, 0)).to.equal(6);
+      expect(_.reduce([1, 2, 3], (acc, num) => acc + num)).to.equal(6);
     });
     it('returns the initial value of the memo if passed identity as the iteratee', () => {
       const memo = {};
@@ -333,16 +333,6 @@ describe('_', () => {
       };
       _.reduce([1, 2, 3], iteratee, context);
       expect(result).to.eql(['Bob', 'Bob', 'Bob']);
-    });
-    it('skips the first element if not passed memo and passes each element of the array to the iteratee function', () => {
-      const spy = sinon.spy();
-      _.reduce([1, 2, 3], spy);
-      expect(spy.callCount).to.equal(2);
-    });
-    it('skips the first element if not passed memo and passes each element of the object to the iteratee function', () => {
-      const spy = sinon.spy();
-      _.reduce({ one: 1, two: 2, three: 3, four: 4 }, spy);
-      expect(spy.callCount).to.equal(3);
     });
   });
 
