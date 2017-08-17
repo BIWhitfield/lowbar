@@ -139,10 +139,12 @@ function difference() {
 
 function throttle(func, delay) {
   let wait = false;
+  let cache = null;
 
   // if timeout has finished allow function to run again clear cache
   function resume() {
     wait = false;
+    cache = null;
   }
 
   // set wait to true and set timeout based on delay param
@@ -152,7 +154,7 @@ function throttle(func, delay) {
   }
 
   return function () {
-    if (wait) return;
+    if (wait) return cache;
 
     const args = [].slice.call(arguments);
 
@@ -162,8 +164,10 @@ function throttle(func, delay) {
     };
     // if no wait execute function
     if (!wait) {
-      invokeFunction();
+      cache = invokeFunction();
     }
+    console.log(cache);
+    return cache;
   };
 }
 
