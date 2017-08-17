@@ -138,21 +138,23 @@ function difference() {
 
 
 function throttle(func, delay) {
-  let timer = null;
-  let queued = null;
+  let wait = false;
+  let cache = null;
 
+  // if timeout has finished allow function to run again clear cache
   function resume() {
-    timer = null;
-    if (queued) queued();
-    queued = null;
+    wait = false;
+    cache = null;
   }
 
+  // set wait to true and set timeout based on delay param
   function setDelay() {
-    timer = setTimeout(resume, delay);
+    wait = true;
+    setTimeout(resume, delay);
   }
 
   return function () {
-    if (queued) return;
+    if (wait) return cache;
 
     const args = [].slice.call(arguments);
 
@@ -160,12 +162,12 @@ function throttle(func, delay) {
       func.apply(null, args);
       setDelay();
     };
-
-    if (!timer) {
-      invokeFunction();
-    } else {
-      queued = invocation;
+    // if no wait execute function
+    if (!wait) {
+      cache = invokeFunction();
     }
+    console.log(cache);
+    return cache;
   };
 }
 

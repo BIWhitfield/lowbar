@@ -256,11 +256,14 @@ describe('throttle', () => {
     before(() => clock = sinon.useFakeTimers());
     it('performs wait', (done) => {
       const callback = sinon.spy();
-      const throttled = throttle(callback, 100);
+      const throttled = throttle(callback, 1000);
       throttled();
-      clock.tick(99);
-      expect(callback.notCalled).to.equal(true);
-      clock.tick(1);
+      throttled();
+      throttled();
+      throttled();
+      expect(callback.calledOnce).to.equal(true);
+      clock.tick(1000);
+      throttled();
       expect(callback.calledOnce).to.equal(true);
       done();
     });
