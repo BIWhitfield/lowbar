@@ -167,11 +167,6 @@ function throttle(func, delay) {
   };
 }
 
-const throttled = _.throttle(Math.random, 10000);
-
-console.log(throttled());
-console.log(throttled());
-
 
 module.exports = {
   once,
