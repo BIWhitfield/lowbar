@@ -159,7 +159,7 @@ _.pluck = function (list, propertyName) {
 _.reduce = function (list, iteratee, memo, context) {
   if (context) iteratee = iteratee.bind(context);
   _.each(list, (elem, index) => {
-    if (!memo) {
+    if (memo === undefined) {
       memo = elem;
       iteratee(memo, elem, index, list);
     } else memo = iteratee(memo, elem, index, list);
