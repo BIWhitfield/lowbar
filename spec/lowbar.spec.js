@@ -314,6 +314,7 @@ describe('_', () => {
     it('should return a single value with and without memo', () => {
       expect(_.reduce([1, 2, 3], (acc, num) => acc + num, 0)).to.equal(6);
       expect(_.reduce([1, 2, 3], (acc, num) => acc + num)).to.equal(6);
+      expect(_.reduce([0, 1, 2, 3], (acc, num) => acc + num, 0)).to.equal(6);
     });
     it('returns the initial value of the memo if passed identity as the iteratee', () => {
       const memo = {};
